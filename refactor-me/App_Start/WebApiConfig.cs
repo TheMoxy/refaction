@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using Unity.AspNet.WebApi;
 
 namespace refactor_me
 {
@@ -10,6 +11,9 @@ namespace refactor_me
             var formatters = GlobalConfiguration.Configuration.Formatters;
             formatters.Remove(formatters.XmlFormatter);
             formatters.JsonFormatter.Indent = true;
+
+            var resolver = new UnityDependencyResolver(UnityConfig.Container);
+            config.DependencyResolver = resolver;
 
             // Web API routes
             config.MapHttpAttributeRoutes();

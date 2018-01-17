@@ -27,7 +27,7 @@ namespace IntegrationTests
 
             // Clone test database for this run
             Helpers.DataDirectory = TestDatabasePath;
-
+            
             _server = new HttpServer(config);
             _client = new HttpClient(_server);
         }

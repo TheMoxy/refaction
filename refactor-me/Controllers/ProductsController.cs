@@ -8,18 +8,24 @@ namespace refactor_me.Controllers
     [RoutePrefix("products")]
     public class ProductsController : ApiController
     {
+        Database.IDataLayer _dataLayer;
+        public ProductsController(Database.IDataLayer dataLayer)
+        {
+            _dataLayer = dataLayer;
+        }
+
         [Route]
         [HttpGet]
         public Products GetAll()
         {
-            return new Products();
+            return _dataLayer.LoadProducts(null);
         }
 
         [Route]
         [HttpGet]
         public Products SearchByName(string name)
         {
-            return new Products(name);
+            return _dataLayer.LoadProductsByName(name);
         }
 
         [Route("{id}")]
