@@ -11,6 +11,7 @@ namespace refactor_me
     {
         protected void Application_Start()
         {
+            Models.Helpers.DataDirectory = HttpContext.Current.Server.MapPath("~/App_Data");
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }
     }
