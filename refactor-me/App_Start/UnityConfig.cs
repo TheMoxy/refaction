@@ -39,7 +39,7 @@ namespace refactor_me
             // NOTE: To load from web.config uncomment the line below.
             // Make sure to add a Unity.Configuration to the using statements.
             // container.LoadConfiguration();
-            
+
             container.RegisterType<Database.IDataLayer, Database.DataLayer>();
         }
     }

@@ -32,7 +32,7 @@ namespace refactor_me.Controllers
         [HttpGet]
         public Product GetProduct(Guid id)
         {
-            var product = new Product(id);
+            var product = _dataLayer.LoadProductById(id.ToString());
             if (product.IsNew)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
@@ -43,7 +43,7 @@ namespace refactor_me.Controllers
         [HttpPost]
         public void Create(Product product)
         {
-            product.Save();
+            _dataLayer.SaveProduct(product);
         }
 
         [Route("{id}")]
@@ -59,15 +59,14 @@ namespace refactor_me.Controllers
             };
 
             if (!orig.IsNew)
-                orig.Save();
+                _dataLayer.SaveProduct(orig);
         }
 
         [Route("{id}")]
         [HttpDelete]
         public void Delete(Guid id)
         {
-            var product = new Product(id);
-            product.Delete();
+            _dataLayer.DeleteProduct(id);
         }
 
         [Route("{productId}/options")]
